@@ -1,0 +1,166 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<html>
+
+<head>
+  <style>
+  	    body {
+        font-family: 'Lato', Calibri, Arial, sans-serif;
+    }
+    
+    .main {
+        background-color: #FDB632;
+        width: 650px;
+        height: auto;
+        padding-bottom: 30px;
+        margin: 7em auto;
+        border-radius: 0.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .sign {
+        padding-top: 40px;
+        color: #FFFFFF;
+        font-family: 'Lato', Calibri, Arial, sans-serif;
+        font-size: 40px;
+        font-weight: 300;
+        margin-bottom: 0px;
+    }
+    
+    .un {
+    width: 76%;
+    color: rgb(125, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.2);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 75px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: sans-serif;
+    }
+    
+    form.form1 {
+        padding-top: 40px;
+    }
+    
+    .pass {
+            width: 76%;
+    color: rgb(125, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.2);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 75px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: sans-serif;
+    }
+    
+    .pass1 {
+            width: 76%;
+    color: rgb(125, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.2);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 75px;
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: sans-serif;
+    }
+
+    .un:focus, .pass:focus {
+        border: 2px solid rgba(0, 0, 0, 0.18) !important;
+        
+    }
+    
+    .submit1 {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: linear-gradient(to right, #027878, #027878);
+        border: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        margin-left: 40%;
+        margin-bottom: 20px;
+        font-size: 13px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .submit2 {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: #C22326;
+        border: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        margin-bottom: 20px;
+        font-size: 12px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+    
+    .forgot {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #FFFFFF;
+        padding-top: 0px;
+    }
+    
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in</title>
+</head>
+
+<body>
+  <div class="main">
+    <p class="sign" align="center">Register</p>
+    <form class="form1" method="post">
+    {% csrf_token %}
+    {{form.username.errors}}	
+      <input class="un " type="text" name="username" align="center" placeholder="Username">
+      {{form.password1.errors}}
+      <input class="pass" type="password" name="password1" align="center" placeholder="Password">
+      {{form.password2.errors}}
+      <input class="pass1" type="password" name="password2" align="center" placeholder="Re-enter password">
+      <input class="submit1" type="submit" align="center" value="Sign up">
+      <br>Already have an account? <a class="submit2" href="{% url 'login' %}">Sign in</a>
+     </form>
+    </div>
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends 'index.html' %}
+
+{% block body %}
+<head>
+  <style>
+  	    body {
+        font-family: 'Lato', Calibri, Arial, sans-serif;
+    }
+    
+    .main {
+        background-color: #F37338;
+        width: 650px;
+        height: auto;
+        padding-bottom: 30px;
+        margin: auto;
+        margin-left: 40px;
+        border-radius: 0.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .sign {
+        padding-top: 40px;
+        color: #FFFFFF;
+        font-family: 'Lato', Calibri, Arial, sans-serif;
+        font-size: 40px;
+        font-weight: 5px;
+        margin-bottom: 0px;
+    }
+    
+    .in1 {
+    width: 76%;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.4);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: sans-serif;
+    }
+    
+    form.form1 {
+        padding-top: 40px;
+    }
+    
+    .in2 {
+            width: 76%;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.4);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: sans-serif;
+    }
+    
+
+    .in3 {
+            width: 76%;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.4);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    text-align: center;
+    margin-bottom: 0px;
+    font-family: sans-serif;
+    }
+
+    .un:focus, .pass:focus {
+        border: 2px solid rgba(0, 0, 0, 0.18) !important;
+        
+    }
+    
+    .submit {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: linear-gradient(to right, #027878, #027878);
+        border: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 13px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+    
+    .forgot {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #FFFFFF;
+        padding-top: 0px;
+    }
+    
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
+}     
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign in</title>
+</head>
+<header class="codrops-header">
+              <h1><span>Currently edditing item {{item.item}} from {{header}}!</span></h1>
+  </header>
+  <div class="content">
+  <nav class="codrops-demos">
+    <a href="{% url 'display_beverages' %}">View Products</a>
+    <a href="{% url 'add_beverages' %}">Add Beverages</a>
+    <a href="{% url 'add_snacks' %}">Add Snacks</a>
+    <a href="{% url 'add_cans' %}">Add Cans</a>
+  </nav>
+  <table>
+  <tr><th>
+  <div class="main">
+    <form class="form1" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      {{form.item.errors}}
+      <input class="in1 " type="text" name="item" align="center" placeholder="Item Name" value="{{item.item}}">
+      {{form.price.errors}}
+      <input class="in2" type="text" name="price" align="center" placeholder="Price" value="{{item.price}}">
+       {{form.quantity.errors}}
+      <input class="in3" type="text" name="quantity" align="center" placeholder="Quantity" value="{{item.quantity}}">
+      <div class="file-upload">
+        <div class="image-upload-wrap">
+          <input class="file-upload-input" type='file' name="model_pic"onchange="readURL(this);" accept="image/*" />
+          <div class="drag-text">
+            <h3>Drop a file or select to add image to edit model</h3>
+          </div>
+         </div>
+         <div class="file-upload-content">
+          <img class="file-upload-image" src="#" alt="your image" />
+         <div class="image-title-wrap">
+          <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+          </div>
+         </div>
+      </div>
+      <p>Added by: {{user.get_username}}</p>
+      <input class="submit" type="submit" align="right" value="Add Item">
+    </form>           
+    </div>
+  </th>
+</tr>
+</table>
+  </div>
+{% endblock %}

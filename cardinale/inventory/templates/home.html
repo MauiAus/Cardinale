@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+
+{% block body %}
+            <header class="codrops-header">
+              <h1>Cardinale<span>Your Own Item Inventory Sorter</span></h1>
+            </header>
+            {% if user.is_authenticated %}
+            <div class="content clearfix">
+              <div class="block block-40 clearfix">
+                <p>Welcome to Cardinale, {{user.get_username}}!</p>
+                <nav class="codrops-demos">
+                  <a href="{% url 'logout' %}">Logout</a>
+                </nav>
+              </div>
+              <div class="block block-60">
+                <p><strong>Cardinale:</strong>Item Inventory Sorter</p>
+                <p>asdasdijaslfnaljknsflansflanlfknaslkfnaslk
+                	fnalskndflkasndlksa
+                asdasdasdadasdasdasdaslidjalsdjakl</p>
+              </div>
+            </div>
+            {% else %}
+            <div class="content clearfix">
+              <div class="block block-40 clearfix">
+                <p>Welcome to Cardinale!</p>
+                <nav class="codrops-demos">
+                  <a href="{% url 'login' %}">Login</a>
+                  <a href="{% url 'register' %}">Sign up</a>
+                </nav>
+              </div>
+              <div class="block block-60">
+                <p><strong>Cardinale:</strong>Item Inventory Sorter</p>
+                <p>asdasdijaslfnaljknsflansflanlfknaslkfnaslk
+                	fnalskndflkasndlksa
+                asdasdasdadasdasdasdaslidjalsdjakl</p>
+              </div>
+            </div>
+            {% endif %}
+{% endblock %}

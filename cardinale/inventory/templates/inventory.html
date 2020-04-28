@@ -1,0 +1,120 @@
+{% extends 'index.html' %}
+
+
+{% block body %}
+{% if user.is_authenticated %}
+<style>
+  .submite {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: #FDA632;
+        border: 0;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 11px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        position: center;
+        margin-left: 45px;
+    }
+    .submitd {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: #C22326;
+        border: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 11px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        margin-right: auto;
+    }
+</style>
+  <header class="codrops-header">
+              <h1>{{header}}<span>Item Inventory</span></h1>
+  </header>
+<div class="content">
+ <div class="codrops-demos">
+    <a href="{% url 'add_beverages' %}">Add Product</a>
+    <a href="{% url 'display_beverages' %}">Beverages</a>
+    <a href="{% url 'display_snacks' %}">Snacks</a>
+    <a href="{% url 'display_cans' %}">Cans</a>
+  </div>
+  <table>
+  <tr><th>
+  <ul class="product-list-small">
+      {% for item in items %}
+        <li>
+            <a href="#" class="product-photo">
+            <img src="{{ item.model_pic.url}}" height="200" width="200">
+            </a>
+            <h2 align="center"><a>{{item.item}}</a></h2>
+            <p class="product-description" align="center">Quantity: {{item.quantity}}</p>
+            {% if item.price == 1 %}
+            <p class="product-price" align="center">{{item.price}} peso</p>
+            {% else %}
+            <p class="product-price" align="center">{{item.price}} pesos</p>
+            {% endif %}
+            {% if header == "Beverages" %}
+            <a class = "submite" href="{% url 'edit_beverages' item.id %}">Edit</a>
+            <a class = "submitd" href="{% url 'del_beverages' item.id %}">Delete</a>
+            {% elif header == "Snacks" %}
+            <a class = "submite" href="{% url 'edit_snacks' item.id %}">Edit</a>
+            <a class = "submitd" href="{% url 'del_snacks' item.id %}">Delete</a>
+            {% elif header == "Cans" %}
+            <a class = "submite" href="{% url 'edit_cans' item.id %}">Edit</a>
+            <a class = "submitd" href="{% url 'del_cans' item.id %}">Delete</a>
+            {% endif %}
+        </li>
+      {% endfor %}
+  </ul>
+</th>
+</tr>
+</table> 
+</div>
+      <!--
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Category</th>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{item.id}}</td>
+        <td>{{ header }}</td>
+        <td>{{ item.item }}</td>
+        <td>{{ item.price }} </td>
+        <td>{{ item.quantity }}</td>
+        {% if header == "Beverages" %}
+        <td><a href="{% url 'del_beverages' item.id %}">Delete</a></td>
+        <td><a href="{% url 'edit_beverages' item.id %}">Edit</a></td>
+        {% elif header == "Snacks" %}
+        <td><a href="{% url 'del_snacks' item.id %}">Delete</a></td>
+        <td><a href="{% url 'edit_snacks' item.id %}">Edit</a></td>
+        {% elif header == "Cans" %}
+        <td><a href="{% url 'del_cans' item.id %}">Delete</a></td>
+        <td><a href="{% url 'edit_cans' item.id %}">Edit</a></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+-->
+{% else %}
+<h1>Please login to view inventory!</h1>
+{% endif %}
+{% endblock %}
+
